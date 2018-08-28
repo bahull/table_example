@@ -7,12 +7,24 @@ class TableContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
+      test1: [
         { name: "Bryce", age: 25, height: 6, title: "Maybe", test: "yep" },
         { name: "John", age: 27, height: 5, title: "Maybe", test: "yep" },
         { name: "john", age: 28, height: 4, title: "Maybe", test: "yep" }
-      ]
+      ],
+      test2: [
+        { name: "Tony", age: 25, height: 6, title: "Maybe", test: "yep" },
+        { name: "Robbie", age: 27, height: 5, title: "Maybe", test: "yep" },
+        { name: "Xray", age: 28, height: 4, title: "Maybe", test: "yep" }
+      ],
+      test3: [
+        { name: "Bob", age: 25, height: 6, title: "Maybe", test: "yep" },
+        { name: "William", age: 27, height: 5, title: "Maybe", test: "yep" },
+        { name: "Tracy", age: 28, height: 4, title: "Maybe", test: "yep" }
+      ],
+      selectedReport: "test2"
     };
+    this.selectReport = this.selectReport.bind(this);
   }
   componentDidMount() {
     // axios.get("https://swapi.co/api/people").then(result => {
@@ -21,15 +33,19 @@ class TableContainer extends Component {
     // });
   }
 
+  selectReport(e) {
+    console.log(e.target.value);
+    this.setState({ selectedReport: e.target.value });
+  }
   render() {
     let headers =
-      this.state.data.length > 0 &&
-      Object.keys(this.state.data[0]).map((cur, ind) => {
+      this.state[this.state.selectedReport].length > 0 &&
+      Object.keys(this.state[this.state.selectedReport][0]).map((cur, ind) => {
         return <th key={ind}>{cur}</th>;
       });
     let values =
-      this.state.data.length > 0 &&
-      this.state.data.map((cur, ind) => {
+      this.state[this.state.selectedReport].length > 0 &&
+      this.state[this.state.selectedReport].map((cur, ind) => {
         return (
           <tr key={ind}>
             {Object.values(cur).map((curr, ind) => {
@@ -41,7 +57,12 @@ class TableContainer extends Component {
     return (
       <div>
         <h2>Reports</h2>
-        {this.state.data.length > 0 && (
+        <select onChange={this.selectReport} defaultValue="test2">
+          <option value="test1">Test 1</option>
+          <option value="test2">Test 2</option>
+          <option value="test3">Test 3</option>
+        </select>
+        {this.state[this.state.selectedReport].length > 0 && (
           <Table headers={headers} values={values} />
         )}
       </div>
