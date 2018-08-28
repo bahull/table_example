@@ -18,9 +18,33 @@ class TableContainer extends Component {
         { name: "Xray", age: 28, height: 4, title: "Maybe", test: "yep" }
       ],
       test3: [
-        { name: "Bob", age: 25, height: 6, title: "Maybe", test: "yep" },
-        { name: "William", age: 27, height: 5, title: "Maybe", test: "yep" },
-        { name: "Tracy", age: 28, height: 4, title: "Maybe", test: "yep" }
+        {
+          name: "Bob",
+          age: 25,
+          height: 6,
+          title: "Maybe",
+          test: "yep",
+          time: "3:24",
+          successfulLaunch: "True"
+        },
+        {
+          name: "William",
+          age: 27,
+          height: 5,
+          title: "Maybe",
+          test: "yep",
+          time: "3:24",
+          successfulLaunch: "True"
+        },
+        {
+          name: "Tracy",
+          age: 28,
+          height: 4,
+          title: "Maybe",
+          test: "yep",
+          time: "3:24",
+          successfulLaunch: "True"
+        }
       ],
       selectedReport: "test2"
     };
@@ -34,7 +58,6 @@ class TableContainer extends Component {
   }
 
   selectReport(e) {
-    console.log(e.target.value);
     this.setState({ selectedReport: e.target.value });
   }
   render() {
